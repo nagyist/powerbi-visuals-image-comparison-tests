@@ -1,16 +1,14 @@
-﻿import {jasmineHelpers} from "../_references";
+﻿import {jasmineHelpers, testRunner} from "../_references";
 
 describe("AsterPlot", () => {
-    beforeEach(() => {
-        browser.url("https://msit.powerbi.com/view?r=eyJrIjoiZGVmNjUyZmItODIxMC00MzI0LWE4ZDAtNzIxZGY5NzhjZGFlIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9");
+    it("default", (done) => {
+        browser
+            //To execute any client script before taking a screenshot
+            .webdrivercss(testRunner.getCurrentSpecImagePath(), {
+                name: "svg.asterPlot",
+                elem: "svg.asterPlot"
+            })
+            .then(result => jasmineHelpers.assertImageMatch(result))
+            .then(() => done());
     });
-
-    it("default", () => {
-        let result = browser.webdrivercss(jasmineHelpers.getCurrentSpecImagePath(), {
-            name: "svg.asterPlot",
-            elem: "svg.asterPlot"
-        });
-
-        jasmineHelpers.assertImageMatch(result);
-    });
-})
+});

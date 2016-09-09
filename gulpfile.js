@@ -22,8 +22,10 @@ gulp.task("install-start-selenium", () => {
 });
 
 gulp.task("run", () => {
-    var runner = new seleniumTestRunner.WDIOTestRunner("wdio.conf.js");
-    return runner.run();
+    return seleniumTestRunner.testRunner
+        .run("config.js")
+        .catch(() => process.exit(1))
+        .then(() => process.exit(0));
 });
 
 gulp.task('build-run', () => {
@@ -31,8 +33,5 @@ gulp.task('build-run', () => {
 });
 
 gulp.task('build-install-run', () => {
-    runSequence("build", "install-start-selenium", () => {
-        var runner = new seleniumTestRunner.WDIOTestRunner("wdio.conf.js");
-        return runner.run().then(exitCode => process.exit(exitCode));
-    });
+    return runSequence("build", "install-start-selenium", "run");
 });
