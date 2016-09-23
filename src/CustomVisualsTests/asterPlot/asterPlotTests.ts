@@ -1,12 +1,13 @@
-﻿import {jasmineHelpers, testRunner} from "../_references";
+﻿///<reference path="../_references.ts"/>
 
 describe("AsterPlot", () => {
     it("default", (done) => {
         //To execute any client script before taking a screenshot
-        browser.assertAreaScreenshot({
+        browser
+            .assertAreaScreenshotMatch({
                 name: "svg.asterPlot",
                 elem: "svg.asterPlot"
             })
-            .then(() => done());
+            .then(done);
     });
 });

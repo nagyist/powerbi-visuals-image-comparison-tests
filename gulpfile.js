@@ -1,7 +1,7 @@
 var gulp = require("gulp");
 var runSequence = require("run-sequence")
-var builder = require("./node_modules/selenium-test-runner/builder");
-var seleniumTestRunner = require("selenium-test-runner");
+var builder = require("./node_modules/visual-regression-test-runner/builder");
+var visualRegressionTestRunner = require("visual-regression-test-runner");
 
 var customVisualsTestsTsConfigPath = __dirname + "/src/CustomVisualsTests/tsconfig";
 
@@ -16,13 +16,13 @@ gulp.task("clean", () => {
 });
 
 gulp.task("install-start-selenium", () => {
-    return seleniumTestRunner.seleniumServer
+    return visualRegressionTestRunner.seleniumServer
         .install()
-        .then(() => seleniumTestRunner.seleniumServer.run());
+        .then(() => visualRegressionTestRunner.seleniumServer.run());
 });
 
 gulp.task("run", () => {
-    return seleniumTestRunner.testRunner
+    return visualRegressionTestRunner.testRunner
         .run("config.js")
         .catch(() => process.exit(1))
         .then(() => process.exit(0));
