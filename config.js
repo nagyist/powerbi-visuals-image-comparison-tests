@@ -1,4 +1,4 @@
-module.exports.config = {
+module.exports = {
     jasmine: {
         defaultTimeoutInterval: 30000
     },
