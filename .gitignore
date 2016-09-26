@@ -15,7 +15,10 @@
 *.templates.ts
 *.user
 
-/build/**
 /node_modules
+/src/.vs
+/*debug.log
+
+/lib/**
 /screenshots/**/*.png
 !/screenshots/**/*.baseline.png

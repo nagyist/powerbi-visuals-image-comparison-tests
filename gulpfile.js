@@ -16,9 +16,7 @@ gulp.task("clean", () => {
 });
 
 gulp.task("install-start-selenium", () => {
-    return visualRegressionTestRunner.seleniumServer
-        .install()
-        .then(() => visualRegressionTestRunner.seleniumServer.run());
+    return visualRegressionTestRunner.seleniumServer.installRun();
 });
 
 gulp.task("run", () => {
