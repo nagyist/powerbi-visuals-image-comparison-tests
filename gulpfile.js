@@ -16,12 +16,12 @@ gulp.task("clean", () => {
 });
 
 gulp.task("install-start-selenium", () => {
-    return visualRegressionTestRunner.seleniumServer.installRun();
+    return visualRegressionTestRunner.SeleniumServer.installRun();
 });
 
 gulp.task("run", () => {
-    return visualRegressionTestRunner.testRunner
-        .run("config.js")
+    return visualRegressionTestRunner.TestRunner
+        .run("./config.js")
         .catch(() => process.exit(1))
         .then(() => process.exit(0));
 });
