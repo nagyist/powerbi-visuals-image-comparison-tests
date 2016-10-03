@@ -15,21 +15,21 @@ gulp.task("clean", () => {
     builder.clean(customVisualsTestsTsConfigPath)
 });
 
-gulp.task("install-start-selenium", () => {
-    return visualRegressionTestRunner.SeleniumServer.installRun();
-});
-
 gulp.task("run", () => {
     return visualRegressionTestRunner.TestRunner
-        .run("./config.js")
-        .catch(() => process.exit(1))
-        .then(() => process.exit(0));
+        .run({
+            configPath: "./config.js",
+            autoRunSeleniumServer: true
+        })
+        .then(
+        () => process.exit(0),
+        () => process.exit(1));
 });
 
 gulp.task('build-run', () => {
     runSequence("build", "run");
 });
 
-gulp.task('build-install-run', () => {
-    return runSequence("build", "install-start-selenium", "run");
+gulp.task("start-selenium-server", () => {
+    return visualRegressionTestRunner.SeleniumServer.installRun();
 });
