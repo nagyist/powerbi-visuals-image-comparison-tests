@@ -26,13 +26,15 @@ test_script:
   # Output useful info for debugging.
   - node --version && npm --version
 
-  - node_modules\.bin\gulp build-install-run
+  - node_modules\.bin\gulp build-run
 
 # scripts to run after tests
-on_finish :
+on_failure:
+  - 7z a screenshots.zip screenshots\**\*
+  - appveyor PushArtifact screenshots.zip
 
 matrix:
-  fast_finish: true
+  fast_finish: false
 
 cache:
   - C:\Users\appveyor\AppData\Roaming\npm-cache -> package.json         # npm cache
